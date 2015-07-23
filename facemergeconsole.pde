@@ -36,7 +36,6 @@ void setup() {
   images = listFileNames(dataPath("images"), true, "jpg", null);
   println(images.length);
   reset();
-  
 }
 
 void setupSerial() {
@@ -48,14 +47,14 @@ void setupSerial() {
 
 
 void draw() {
-  
+
   image(parts[FRAME], 0, 0);
   if (mousePressed)
     return;
   image(parts[EYES], 0, 0);
   image(parts[NOSE], 0, 0);
   image(parts[MOUTH], 0, 0);
-  
+
   if (!simulate) {
     String msg = getSerialMessage();
     if (msg!= null && msg.trim().length() > 0) {
@@ -67,7 +66,7 @@ void draw() {
 }
 
 void reset() {
-  for(int i = 0; i < imgIndex.length; i++) {
+  for (int i = 0; i < imgIndex.length; i++) {
     imgIndex[i] = 0;
     parts[i] = load(imgIndex[i]);
   }
@@ -87,7 +86,7 @@ void advance(int component, boolean forward) {
     idx--;
     if (idx < 0) {
       idx = images.length - 1;
-    }  
+    }
   }  
   idx = idx % images.length;
   imgIndex[component] = idx;
@@ -138,28 +137,28 @@ void keyPressed() {
     saveFrame("image####.png");
     break; 
   case 'q': 
-    advance(EYES,false);
+    advance(EYES, false);
     break;
   case 'w': 
-    advance(EYES,true);
+    advance(EYES, true);
     break;
   case 'e': 
-    advance(NOSE,false);
+    advance(NOSE, false);
     break;
   case 'r': 
-    advance(NOSE,true);
+    advance(NOSE, true);
     break;
   case 't': 
-    advance(MOUTH,false);
+    advance(MOUTH, false);
     break;
   case 'y': 
-    advance(MOUTH,true);
+    advance(MOUTH, true);
     break;
   case 'i': 
-    advance(FRAME,false);
+    advance(FRAME, false);
     break;
   case 'o': 
-    advance(FRAME,true);
+    advance(FRAME, true);
     break;
   case 'p':
     printFrame(false); 
@@ -171,9 +170,11 @@ void handleMessage(String msg) {
   msg = msg.trim();
   if (!msg.startsWith("[")) {
     println("Invalid message: " + msg);
+    return;
   }
   if (!msg.endsWith("]")) {
     println("Invalid message: " + msg);
+    return;
   }
   msg = msg.substring(1, msg.length() - 1);
   if (msg.indexOf("P") != -1) {
