@@ -2,8 +2,10 @@ import processing.serial.*;
 import java.io.File;
 import java.io.FilenameFilter;
 
-boolean simulate = false;
-int NUM_IMAGES = 6;
+boolean simulate = true;
+boolean fullScreen = true;
+int IMAGE_WIDTH = 630;
+int IMAGE_HEIGHT = 768;
 
 PImage eyeMask, noseMask, mouthMask;
 
@@ -20,9 +22,10 @@ final int FRAME = 3;
 int[] imgIndex = new int[4]; 
 PImage[] parts = new PImage[4];
 String[] images;
+int imageX, imageY;
 
 void setup() {
-  size(500, 630);
+  size(displayWidth, displayHeight);
   listPrinters();
   loadSettings();
   if (!simulate)
@@ -33,9 +36,14 @@ void setup() {
   for (int i = 0; i < selectorValues.length; i++) {
     selectorValues[i] = 0;
   }
-  images = listFileNames(dataPath("images"), true, "jpg", null);
-  println(images.length);
+  images = listFileNames(dataPath("images"), true, "png", null);
+  println("loaded " + images.length + " images");
   reset();
+  imageX = width/2 - IMAGE_WIDTH/2;
+  imageY = height/2 - IMAGE_HEIGHT/2;
+  if (fullScreen) {
+  
+  }
 }
 
 void setupSerial() {
@@ -45,15 +53,18 @@ void setupSerial() {
   port.clear();
 }
 
+boolean sketchFullScreen() {
+  return fullScreen;
+}
 
 void draw() {
-
-  image(parts[FRAME], 0, 0);
+  background(0);
+  image(parts[FRAME], imageX, imageY);
   if (mousePressed)
     return;
-  image(parts[EYES], 0, 0);
-  image(parts[NOSE], 0, 0);
-  image(parts[MOUTH], 0, 0);
+  image(parts[EYES], imageX, imageY);
+  image(parts[NOSE], imageX, imageY);
+  image(parts[MOUTH], imageX, imageY);
 
   if (!simulate) {
     String msg = getSerialMessage();
@@ -99,11 +110,6 @@ void mask() {
   parts[NOSE].mask(noseMask);  
   parts[MOUTH].mask(mouthMask);
 }
-
-int getIndex() {
-  return int(random(1, NUM_IMAGES+1));
-}
-
 
 void loadSettings() {
   String[] settings = loadStrings("settings.txt");
