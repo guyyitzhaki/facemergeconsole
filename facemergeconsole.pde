@@ -4,16 +4,18 @@ import java.io.FilenameFilter;
 
 boolean simulate = true;
 boolean fullScreen = false;
-final int IMAGE_WIDTH = 630;
-final int IMAGE_HEIGHT = 768;
-final int EYES_HEIGHT = 137;
-final int NOSE_HEIGHT = 223;
-final int MOUTH_HEIGHT = 198;
-
+boolean printImages = false;
+final int IMAGE_WIDTH = 1260;
+final int IMAGE_HEIGHT = 1536;
+final int EYES_HEIGHT = 392;
+final int NOSE_HEIGHT = 526;
+final int MOUTH_HEIGHT = 418;
 
 PImage eyeMask, noseMask, mouthMask;
+PGraphics canvas;
 
-PGraphics eyeCanvas, noseCanvas, mouthCanvas;
+
+float drawHeight, drawWidth;
 
 int printerId; 
 String serialDev;
@@ -29,15 +31,18 @@ int[] imgIndex = new int[4];
 PImage[] parts = new PImage[4];
 PImage[] maskedParts = new PImage[4];
 String[] images;
-int imageX, imageY;
+float imageX, imageY;
 JSONObject coordinates;
 
 void setup() {
   size(displayWidth, displayHeight);
+  drawHeight = displayHeight;
+  drawWidth = IMAGE_WIDTH * drawHeight / IMAGE_HEIGHT;
   listPrinters();
   loadSettings();
   if (!simulate)
     setupSerial();
+  canvas = createGraphics(IMAGE_WIDTH, IMAGE_HEIGHT);
   eyeMask = loadImage("eyesmask.png");
   noseMask = loadImage("nosemask.png");
   mouthMask = loadImage("mouthmask.png");
@@ -49,13 +54,13 @@ void setup() {
   for (int i = 0; i < selectorValues.length; i++) {
     selectorValues[i] = 0;
   }
-  images = listFileNames(dataPath("images"), true, "png", null);
+  images = listFileNames(dataPath("images"), true, "jpg", null);
   println("loaded " + images.length + " images");
   reset();
-  imageX = width/2 - IMAGE_WIDTH/2;
-  imageY = height/2 - IMAGE_HEIGHT/2;
+  imageX = width/2 - drawWidth/2;
+  imageY = 0;
   if (fullScreen) {
-  
+    noCursor();
   }
 }
 
@@ -74,8 +79,14 @@ boolean sketchFullScreen() {
 
 void draw() {
   background(0);
-  JSONObject loc = coordinates.getJSONObject(images[imgIndex[FRAME]]);
-  image(parts[FRAME], imageX, imageY);
+  JSONObject loc;
+  try {
+    loc = coordinates.getJSONObject(images[imgIndex[FRAME]]);
+  } catch (Exception e) {
+    loc = createDefaultLocation();
+    //println("WARNING: using defualt values for " + imgIndex[FRAME]); 
+  }
+  image(parts[FRAME], imageX, imageY, drawWidth, drawHeight);
   if (mousePressed)
     return;
   drawPart(loc, EYES, "eyes");
@@ -95,8 +106,18 @@ void draw() {
 void drawPart(JSONObject loc, int idx, String key) {
   int x = loc.getInt(key+"X");
   int y = loc.getInt(key+"Y");  
-  image(maskedParts[idx], imageX+x, imageY+y); 
+  x = (int)xToDisplay(x);
+  y = (int)yToDisplay(y);
+  image(maskedParts[idx], imageX+x, imageY+y, xToDisplay(maskedParts[idx].width), yToDisplay(maskedParts[idx].height)); 
 
+}
+
+float yToDisplay(int y) {
+  return (y * drawHeight) / IMAGE_HEIGHT;
+}
+
+float xToDisplay(int x) {
+  return (x * drawWidth) / IMAGE_WIDTH;
 }
 
 void reset() {
@@ -129,18 +150,35 @@ void advance(int component, boolean forward) {
 }
 
 void mask() {
-  println(images[imgIndex[EYES]]);
   maskPart(EYES, "eyes", eyeMask);
   maskPart(NOSE, "nose", noseMask);
   maskPart(MOUTH, "mouth", mouthMask);
 }
 
 void maskPart(int idx, String key, PImage mask) {
- JSONObject loc = coordinates.getJSONObject(images[imgIndex[idx]]);
+  JSONObject loc;
+ try {
+  loc = coordinates.getJSONObject(images[imgIndex[idx]]);
+ } catch (Exception e) {
+   println("WARNING: using defualt values for " + imgIndex[idx]); 
+   loc = createDefaultLocation();
+ }
   int x = loc.getInt(key+"X");
   int y = loc.getInt(key+"Y");
   maskedParts[idx].copy(parts[idx], x, y, maskedParts[idx].width, maskedParts[idx].height, 0, 0, maskedParts[idx].width, maskedParts[idx].height);
   maskedParts[idx].mask(mask);
+}
+
+JSONObject createDefaultLocation() {
+    JSONObject loc = new JSONObject();
+    loc.setInt("eyesX", 0);
+    loc.setInt("eyesY", 0);
+    loc.setInt("noseX", 0);
+    loc.setInt("noseY", 0);
+    loc.setInt("mouthX", 0);
+    loc.setInt("mouthY", 0);
+    return loc;
+
 }
 
 void loadSettings() {
@@ -165,6 +203,26 @@ void loadSettings() {
       println("setting serial to " + serialDev);
     }
   }
+}
+
+void printImage() {
+  canvas.beginDraw();
+  canvas.image(parts[FRAME],0,0);
+  JSONObject loc = coordinates.getJSONObject(images[imgIndex[FRAME]]);  
+  canvas.image(maskedParts[EYES], loc.getInt("eyesX"), loc.getInt("eyesY"));
+  canvas.image(maskedParts[NOSE], loc.getInt("noseX"), loc.getInt("noseY"));
+  canvas.image(maskedParts[MOUTH], loc.getInt("mouthX"), loc.getInt("mouthY"));
+  canvas.endDraw();
+  PImage img = canvas.get();
+  String imagePath = "output/img"+generateTimeStamp()+".png";
+  img.save(imagePath);
+  if (printImages) {
+    printImage("../"+imagePath, true);
+  }
+}
+
+String generateTimeStamp() {
+    return nf(day(), 2) + nf(month(), 2) + nf(hour(), 2) + nf(minute(), 2) + nf(second(), 2);
 }
 
 void keyPressed() {
@@ -200,7 +258,7 @@ void keyPressed() {
     advance(FRAME, true);
     break;
   case 'p':
-    printFrame(false); 
+    printImage();
     break;
   }
 }

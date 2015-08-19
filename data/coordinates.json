@@ -1,4 +1,12 @@
 {
+  "001L.jpg": {
+    "noseY": 556,
+    "noseX": -13,
+    "mouthY": 922,
+    "eyesX": -9,
+    "mouthX": -17,
+    "eyesY": 516
+  },
   "4 copy.png": {
     "noseY": 316,
     "noseX": 0,
@@ -23,6 +31,14 @@
     "mouthX": 0,
     "eyesY": 223
   },
+  "018L.jpg": {
+    "noseY": 563,
+    "noseX": 4,
+    "mouthY": 925,
+    "eyesX": 0,
+    "mouthX": -21,
+    "eyesY": 483
+  },
   "PSK45-2008-005 copy.png": {
     "noseY": 286,
     "noseX": -2,
@@ -30,5 +46,21 @@
     "eyesX": 0,
     "mouthX": 0,
     "eyesY": 256
+  },
+  "27L.jpg": {
+    "noseY": 496,
+    "noseX": -23,
+    "mouthY": 891,
+    "eyesX": -25,
+    "mouthX": -29,
+    "eyesY": 432
+  },
+  "024L.jpg": {
+    "noseY": 586,
+    "noseX": -13,
+    "mouthY": 946,
+    "eyesX": -13,
+    "mouthX": -32,
+    "eyesY": 524
   }
 }
