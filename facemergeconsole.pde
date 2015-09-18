@@ -3,7 +3,7 @@ import java.io.File;
 import java.io.FilenameFilter;
 
 boolean simulate = true;
-boolean fullScreen = false;
+boolean fullScreen = true;
 boolean printImages = false;
 final int IMAGE_WIDTH = 1260;
 final int IMAGE_HEIGHT = 1536;
@@ -33,6 +33,7 @@ PImage[] maskedParts = new PImage[4];
 String[] images;
 float imageX, imageY;
 JSONObject coordinates;
+boolean debug = true;
 
 void setup() {
   size(displayWidth, displayHeight);
@@ -46,11 +47,11 @@ void setup() {
   eyeMask = loadImage("eyesmask.png");
   noseMask = loadImage("nosemask.png");
   mouthMask = loadImage("mouthmask.png");
-  
+
   maskedParts[EYES] = createImage(IMAGE_WIDTH, EYES_HEIGHT, RGB);
   maskedParts[NOSE] = createImage(IMAGE_WIDTH, NOSE_HEIGHT, RGB);
   maskedParts[MOUTH] = createImage(IMAGE_WIDTH, MOUTH_HEIGHT, RGB);
-  
+
   for (int i = 0; i < selectorValues.length; i++) {
     selectorValues[i] = 0;
   }
@@ -61,6 +62,9 @@ void setup() {
   imageY = 0;
   if (fullScreen) {
     noCursor();
+  }
+  if (debug) {
+    textFont(loadFont("Monospaced.plain-16.vlw"));
   }
 }
 
@@ -82,9 +86,10 @@ void draw() {
   JSONObject loc;
   try {
     loc = coordinates.getJSONObject(images[imgIndex[FRAME]]);
-  } catch (Exception e) {
+  } 
+  catch (Exception e) {
     loc = createDefaultLocation();
-    //println("WARNING: using defualt values for " + imgIndex[FRAME]); 
+    //println("WARNING: using defualt values for " + imgIndex[FRAME]);
   }
   image(parts[FRAME], imageX, imageY, drawWidth, drawHeight);
   if (mousePressed)
@@ -101,6 +106,13 @@ void draw() {
       handleMessage(msg);
     }
   }
+  if (debug) {
+    text("frame: " + images[imgIndex[FRAME]], 10, 20); 
+    text("eyes: " + images[imgIndex[EYES]], 10, 40); 
+    text("nose: " + images[imgIndex[NOSE]], 10, 60); 
+    text("mouth: " + images[imgIndex[MOUTH]], 10, 80); 
+  }
+  
 }
 
 void drawPart(JSONObject loc, int idx, String key) {
@@ -108,8 +120,7 @@ void drawPart(JSONObject loc, int idx, String key) {
   int y = loc.getInt(key+"Y");  
   x = (int)xToDisplay(x);
   y = (int)yToDisplay(y);
-  image(maskedParts[idx], imageX+x, imageY+y, xToDisplay(maskedParts[idx].width), yToDisplay(maskedParts[idx].height)); 
-
+  image(maskedParts[idx], imageX+x, imageY+y, xToDisplay(maskedParts[idx].width), yToDisplay(maskedParts[idx].height));
 }
 
 float yToDisplay(int y) {
@@ -157,12 +168,13 @@ void mask() {
 
 void maskPart(int idx, String key, PImage mask) {
   JSONObject loc;
- try {
-  loc = coordinates.getJSONObject(images[imgIndex[idx]]);
- } catch (Exception e) {
-   println("WARNING: using defualt values for " + imgIndex[idx]); 
-   loc = createDefaultLocation();
- }
+  try {
+    loc = coordinates.getJSONObject(images[imgIndex[idx]]);
+  } 
+  catch (Exception e) {
+    println("WARNING: using defualt values for " + imgIndex[idx]); 
+    loc = createDefaultLocation();
+  }
   int x = loc.getInt(key+"X");
   int y = loc.getInt(key+"Y");
   maskedParts[idx].copy(parts[idx], x, y, maskedParts[idx].width, maskedParts[idx].height, 0, 0, maskedParts[idx].width, maskedParts[idx].height);
@@ -170,15 +182,14 @@ void maskPart(int idx, String key, PImage mask) {
 }
 
 JSONObject createDefaultLocation() {
-    JSONObject loc = new JSONObject();
-    loc.setInt("eyesX", 0);
-    loc.setInt("eyesY", 0);
-    loc.setInt("noseX", 0);
-    loc.setInt("noseY", 0);
-    loc.setInt("mouthX", 0);
-    loc.setInt("mouthY", 0);
-    return loc;
-
+  JSONObject loc = new JSONObject();
+  loc.setInt("eyesX", 0);
+  loc.setInt("eyesY", 0);
+  loc.setInt("noseX", 0);
+  loc.setInt("noseY", 0);
+  loc.setInt("mouthX", 0);
+  loc.setInt("mouthY", 0);
+  return loc;
 }
 
 void loadSettings() {
@@ -207,7 +218,7 @@ void loadSettings() {
 
 void printImage() {
   canvas.beginDraw();
-  canvas.image(parts[FRAME],0,0);
+  canvas.image(parts[FRAME], 0, 0);
   JSONObject loc = coordinates.getJSONObject(images[imgIndex[FRAME]]);  
   canvas.image(maskedParts[EYES], loc.getInt("eyesX"), loc.getInt("eyesY"));
   canvas.image(maskedParts[NOSE], loc.getInt("noseX"), loc.getInt("noseY"));
@@ -219,10 +230,33 @@ void printImage() {
   if (printImages) {
     printImage("../"+imagePath, true);
   }
+  logUsage(imagePath, images[imgIndex[FRAME]], images[imgIndex[EYES]], images[imgIndex[NOSE]], images[imgIndex[MOUTH]]);
 }
 
 String generateTimeStamp() {
-    return nf(day(), 2) + nf(month(), 2) + nf(hour(), 2) + nf(minute(), 2) + nf(second(), 2);
+  return nf(day(), 2) + nf(month(), 2) + nf(hour(), 2) + nf(minute(), 2) + nf(second(), 2);
+}
+
+void logUsage(String imageName, String frame, String eyes, String nose, String mouth) {
+  println("saving " + frame + "," + eyes);
+  String[] log;
+  try {
+    println("trying");
+    log = loadStrings("output/log.txt");
+  } 
+  catch (NullPointerException t) {
+    println("exception");
+    log = new String[0];
+  }
+  if (log == null) {
+    log = new String[0];
+  }
+  String[] newlog = java.util.Arrays.copyOf(log, log.length+4);
+  newlog[log.length] = imageName + " frame: "+frame;
+  newlog[log.length+1] = imageName + " eyes: "+eyes;
+  newlog[log.length+2] = imageName + " nose: "+nose;
+  newlog[log.length+3] = imageName + " mouth :"+mouth;
+  saveStrings("output/log.txt", newlog);
 }
 
 void keyPressed() {
@@ -259,6 +293,9 @@ void keyPressed() {
     break;
   case 'p':
     printImage();
+    break;
+  case 'd':
+    debug = !debug;
     break;
   }
 }
