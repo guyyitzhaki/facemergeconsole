@@ -1,2 +1,2 @@
-printer: 0
+printer: 1
 serial: COM10

@@ -6,7 +6,11 @@
     * encoder pin B to Arduino pin 3
     * encoder ground pin to ground (GND)
 
+    right most - yellow - to 5
+    left most - red to 4
+    middle - to ground
 */
+
 
 #include <Rotary.h>
 

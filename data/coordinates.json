@@ -1,66 +1,418 @@
 {
-  "001L.jpg": {
-    "noseY": 556,
-    "noseX": -13,
-    "mouthY": 922,
-    "eyesX": -9,
-    "mouthX": -17,
-    "eyesY": 516
+  "PSK45-2011-017 copy.jpg": {
+    "noseY": 630,
+    "noseX": -76,
+    "mouthY": 1008,
+    "eyesX": -43,
+    "mouthX": -92,
+    "eyesY": 567
   },
-  "4 copy.png": {
-    "noseY": 316,
+  "PSK45-2015-BW-018 copy.jpg": {
+    "noseY": 561,
+    "noseX": 2,
+    "mouthY": 936,
+    "eyesX": 11,
+    "mouthX": 0,
+    "eyesY": 492
+  },
+  "PSK45-2011-030 copy.jpg": {
+    "noseY": 606,
+    "noseX": -62,
+    "mouthY": 968,
+    "eyesX": -69,
+    "mouthX": -62,
+    "eyesY": 528
+  },
+  "PSK45-2008-005 copy.jpg": {
+    "noseY": 553,
+    "noseX": -14,
+    "mouthY": 916,
+    "eyesX": -16,
+    "mouthX": -28,
+    "eyesY": 492
+  },
+  "PSK45-2008-007 copy.jpg": {
+    "noseY": 504,
+    "noseX": -6,
+    "mouthY": 858,
+    "eyesX": -2,
+    "mouthX": -28,
+    "eyesY": 464
+  },
+  "PSK45-2015-BW-001 copy.jpg": {
+    "noseY": 558,
+    "noseX": -11,
+    "mouthY": 931,
+    "eyesX": -15,
+    "mouthX": -9,
+    "eyesY": 510
+  },
+  "PSK45-2009-001 copy.jpg": {
+    "noseY": 559,
+    "noseX": -3,
+    "mouthY": 929,
+    "eyesX": 9,
+    "mouthX": -25,
+    "eyesY": 511
+  },
+  "PSK45-2015-BW-011 copy.jpg": {
+    "noseY": 615,
+    "noseX": -39,
+    "mouthY": 983,
+    "eyesX": -42,
+    "mouthX": -47,
+    "eyesY": 551
+  },
+  "PSK45-2015-BW-005 copy.jpg": {
+    "noseY": 548,
+    "noseX": 93,
+    "mouthY": 919,
+    "eyesX": 87,
+    "mouthX": 68,
+    "eyesY": 496
+  },
+  "PSK45-2012-028 copy.jpg": {
+    "noseY": 501,
+    "noseX": 26,
+    "mouthY": 878,
+    "eyesX": 25,
+    "mouthX": 0,
+    "eyesY": 461
+  },
+  "PSK45-2013-007 copy.jpg": {
+    "noseY": 457,
+    "noseX": -27,
+    "mouthY": 822,
+    "eyesX": -29,
+    "mouthX": -33,
+    "eyesY": 428
+  },
+  "PSK45-2015-BW-020 copy.jpg": {
+    "noseY": 545,
+    "noseX": -9,
+    "mouthY": 916,
+    "eyesX": 7,
+    "mouthX": -11,
+    "eyesY": 484
+  },
+  "PSK45-2015-BW-008 copy.jpg": {
+    "noseY": 528,
     "noseX": 0,
-    "mouthY": 483,
-    "eyesX": 0,
-    "mouthX": -4,
-    "eyesY": 268
+    "mouthY": 892,
+    "eyesX": 1,
+    "mouthX": -23,
+    "eyesY": 486
   },
-  "PSK45-2008-011 copy.png": {
-    "noseY": 291,
-    "noseX": -94,
-    "mouthY": 446,
-    "eyesX": 0,
+  "PSK45-2011-013 copy.jpg": {
+    "noseY": 658,
+    "noseX": 0,
+    "mouthY": 1028,
+    "eyesX": 4,
+    "mouthX": -16,
+    "eyesY": 559
+  },
+  "PSK45-2011-002 copy.jpg": {
+    "noseY": 485,
+    "noseX": -28,
+    "mouthY": 880,
+    "eyesX": -12,
+    "mouthX": -47,
+    "eyesY": 429
+  },
+  "PSK45-2011-012 copy.jpg": {
+    "noseY": 515,
+    "noseX": -8,
+    "mouthY": 891,
+    "eyesX": 6,
     "mouthX": 0,
-    "eyesY": 203
+    "eyesY": 467
   },
-  "PSK45-2008-007 copy.png": {
-    "noseY": 316,
-    "noseX": 65,
-    "mouthY": 556,
-    "eyesX": 0,
-    "mouthX": 0,
-    "eyesY": 223
+  "PSK45-2008-027 copy.jpg": {
+    "noseY": 511,
+    "noseX": -25,
+    "mouthY": 894,
+    "eyesX": -17,
+    "mouthX": -20,
+    "eyesY": 445
   },
-  "018L.jpg": {
+  "PSK45-2008-011 copy.jpg": {
+    "noseY": 612,
+    "noseX": 38,
+    "mouthY": 985,
+    "eyesX": 31,
+    "mouthX": 16,
+    "eyesY": 552
+  },
+  "PSK45-2013-003 copy.jpg": {
     "noseY": 563,
-    "noseX": 4,
-    "mouthY": 925,
-    "eyesX": 0,
-    "mouthX": -21,
+    "noseX": 10,
+    "mouthY": 936,
+    "eyesX": 14,
+    "mouthX": 0,
+    "eyesY": 500
+  },
+  "PSK45-2011-031 copy.jpg": {
+    "noseY": 541,
+    "noseX": -13,
+    "mouthY": 899,
+    "eyesX": -8,
+    "mouthX": -6,
+    "eyesY": 479
+  },
+  "PSK45-2010-006 copy.jpg": {
+    "noseY": 534,
+    "noseX": -51,
+    "mouthY": 903,
+    "eyesX": -13,
+    "mouthX": -38,
     "eyesY": 483
   },
-  "PSK45-2008-005 copy.png": {
-    "noseY": 286,
-    "noseX": -2,
-    "mouthY": 459,
+  "PSK45-2013-011 copy.jpg": {
+    "noseY": 593,
+    "noseX": -75,
+    "mouthY": 966,
+    "eyesX": -71,
+    "mouthX": -75,
+    "eyesY": 530
+  },
+  "PSK45-2015-BW-010 copy.jpg": {
+    "noseY": 621,
+    "noseX": 9,
+    "mouthY": 986,
     "eyesX": 0,
     "mouthX": 0,
-    "eyesY": 256
+    "eyesY": 549
   },
-  "27L.jpg": {
-    "noseY": 496,
-    "noseX": -23,
-    "mouthY": 891,
-    "eyesX": -25,
-    "mouthX": -29,
-    "eyesY": 432
+  "PSK45-2015-BW-004 copy.jpg": {
+    "noseY": 546,
+    "noseX": -1,
+    "mouthY": 912,
+    "eyesX": 0,
+    "mouthX": -7,
+    "eyesY": 502
   },
-  "024L.jpg": {
-    "noseY": 586,
-    "noseX": -13,
-    "mouthY": 946,
+  "PSK45-2012-008 copy.jpg": {
+    "noseY": 560,
+    "noseX": 40,
+    "mouthY": 928,
+    "eyesX": 25,
+    "mouthX": 11,
+    "eyesY": 509
+  },
+  "PSK45-2012-013 copy.jpg": {
+    "noseY": 565,
+    "noseX": 0,
+    "mouthY": 939,
+    "eyesX": 16,
+    "mouthX": 0,
+    "eyesY": 514
+  },
+  "PSK45-2010-004 copy.jpg": {
+    "noseY": 557,
+    "noseX": -12,
+    "mouthY": 920,
+    "eyesX": 1,
+    "mouthX": -23,
+    "eyesY": 498
+  },
+  "PSK45-2011-032 copy.jpg": {
+    "noseY": 518,
+    "noseX": -16,
+    "mouthY": 888,
+    "eyesX": 0,
+    "mouthX": -15,
+    "eyesY": 466
+  },
+  "PSK45-2011-016 copy.jpg": {
+    "noseY": 349,
+    "noseX": -66,
+    "mouthY": 680,
+    "eyesX": -55,
+    "mouthX": -66,
+    "eyesY": 324
+  },
+  "PSK45-2015-BW-032 copy.jpg": {
+    "noseY": 497,
+    "noseX": 18,
+    "mouthY": 854,
+    "eyesX": 5,
+    "mouthX": 0,
+    "eyesY": 438
+  },
+  "PSK45-2012-001 copy.jpg": {
+    "noseY": 587,
+    "noseX": 4,
+    "mouthY": 947,
+    "eyesX": -2,
+    "mouthX": 0,
+    "eyesY": 506
+  },
+  "PSK45-2013-016 copy.jpg": {
+    "noseY": 500,
+    "noseX": -20,
+    "mouthY": 870,
     "eyesX": -13,
-    "mouthX": -32,
-    "eyesY": 524
+    "mouthX": -39,
+    "eyesY": 439
+  },
+  "PSK45-2008-032 copy.jpg": {
+    "noseY": 569,
+    "noseX": 52,
+    "mouthY": 952,
+    "eyesX": 51,
+    "mouthX": 33,
+    "eyesY": 514
+  },
+  "PSK45-2012-018 copy.jpg": {
+    "noseY": 548,
+    "noseX": 0,
+    "mouthY": 919,
+    "eyesX": 0,
+    "mouthX": -18,
+    "eyesY": 512
+  },
+  "PSK45-2015-BW-015 copy.jpg": {
+    "noseY": 579,
+    "noseX": -10,
+    "mouthY": 953,
+    "eyesX": 0,
+    "mouthX": -2,
+    "eyesY": 502
+  },
+  "PSK45-2012-011 copy.jpg": {
+    "noseY": 519,
+    "noseX": -7,
+    "mouthY": 890,
+    "eyesX": -1,
+    "mouthX": -16,
+    "eyesY": 479
+  },
+  "PSK45-2011-014 copy.jpg": {
+    "noseY": 650,
+    "noseX": 11,
+    "mouthY": 997,
+    "eyesX": 22,
+    "mouthX": 0,
+    "eyesY": 548
+  },
+  "PSK45-2011-010 copy.jpg": {
+    "noseY": 584,
+    "noseX": -54,
+    "mouthY": 972,
+    "eyesX": -30,
+    "mouthX": -66,
+    "eyesY": 510
+  },
+  "PSK45-2011-026 copy.jpg": {
+    "noseY": 516,
+    "noseX": -38,
+    "mouthY": 889,
+    "eyesX": -11,
+    "mouthX": -48,
+    "eyesY": 469
+  },
+  "PSK45-2015-BW-016 copy.jpg": {
+    "noseY": 605,
+    "noseX": 7,
+    "mouthY": 974,
+    "eyesX": 3,
+    "mouthX": 0,
+    "eyesY": 531
+  },
+  "PSK45-2011-028 copy.jpg": {
+    "noseY": 560,
+    "noseX": -60,
+    "mouthY": 920,
+    "eyesX": -47,
+    "mouthX": -53,
+    "eyesY": 488
+  },
+  "PSK45-2009-005 copy.jpg": {
+    "noseY": 550,
+    "noseX": 31,
+    "mouthY": 931,
+    "eyesX": 35,
+    "mouthX": 14,
+    "eyesY": 504
+  },
+  "PSK45-2011-021 copy.jpg": {
+    "noseY": 573,
+    "noseX": -30,
+    "mouthY": 946,
+    "eyesX": -1,
+    "mouthX": -35,
+    "eyesY": 513
+  },
+  "PSK45-2009-004 copy.jpg": {
+    "noseY": 534,
+    "noseX": -3,
+    "mouthY": 920,
+    "eyesX": 0,
+    "mouthX": -3,
+    "eyesY": 500
+  },
+  "PSK45-2011-006 copy.jpg": {
+    "noseY": 565,
+    "noseX": -71,
+    "mouthY": 924,
+    "eyesX": -52,
+    "mouthX": -75,
+    "eyesY": 501
+  },
+  "PSK45-2011-019 copy.jpg": {
+    "noseY": 545,
+    "noseX": -5,
+    "mouthY": 920,
+    "eyesX": -6,
+    "mouthX": -31,
+    "eyesY": 502
+  },
+  "PSK45-2012-024 copy.jpg": {
+    "noseY": 601,
+    "noseX": -14,
+    "mouthY": 975,
+    "eyesX": -3,
+    "mouthX": -24,
+    "eyesY": 539
+  },
+  "PSK45-2010-001 copy.jpg": {
+    "noseY": 519,
+    "noseX": -17,
+    "mouthY": 910,
+    "eyesX": -17,
+    "mouthX": -24,
+    "eyesY": 455
+  },
+  "PSK45-2015-BW-022 copy.jpg": {
+    "noseY": 517,
+    "noseX": 12,
+    "mouthY": 893,
+    "eyesX": 8,
+    "mouthX": 0,
+    "eyesY": 463
+  },
+  "PSK45-2008-026 copy.jpg": {
+    "noseY": 551,
+    "noseX": -34,
+    "mouthY": 937,
+    "eyesX": -13,
+    "mouthX": -34,
+    "eyesY": 490
+  },
+  "PSK45-2012-003-4 copy.jpg": {
+    "noseY": 652,
+    "noseX": 19,
+    "mouthY": 1018,
+    "eyesX": 7,
+    "mouthX": 0,
+    "eyesY": 553
+  },
+  "PSK45-2015-BW-026 copy.jpg": {
+    "noseY": 648,
+    "noseX": -10,
+    "mouthY": 1016,
+    "eyesX": -13,
+    "mouthX": -18,
+    "eyesY": 560
   }
 }
