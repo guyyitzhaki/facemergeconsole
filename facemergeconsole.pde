@@ -133,7 +133,7 @@ float xToDisplay(int x) {
 
 void reset() {
   for (int i = 0; i < imgIndex.length; i++) {
-    imgIndex[i] = 0;
+    imgIndex[i] = int(random(images.length));
     parts[i] = load(imgIndex[i]);
   }
   mask();
