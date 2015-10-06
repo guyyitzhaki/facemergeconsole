@@ -3,8 +3,10 @@ import java.io.File;
 import java.io.FilenameFilter;
 
 boolean simulate = true;
-boolean fullScreen = true;
+boolean fullScreen = false;
 boolean printImages = false;
+boolean debug = false;
+
 final int IMAGE_WIDTH = 1260;
 final int IMAGE_HEIGHT = 1536;
 final int EYES_HEIGHT = 392;
@@ -33,7 +35,6 @@ PImage[] maskedParts = new PImage[4];
 String[] images;
 float imageX, imageY;
 JSONObject coordinates;
-boolean debug = true;
 
 void setup() {
   size(displayWidth, displayHeight);
@@ -297,6 +298,9 @@ void keyPressed() {
   case 'd':
     debug = !debug;
     break;
+ case 'u':
+    listNonMapped();
+    break; 
   }
 }
 
@@ -325,5 +329,19 @@ void handleMessage(String msg) {
       advance(selectorIndex, forward);
     }
   }
+}
+
+void listNonMapped() {
+  String[] files = listFileNames(dataPath("images"), true, "jpg", null);
+  println("checking " + files.length + " files:");  
+  for (int i = 0; i < files.length; i++) {
+    JSONObject loc;
+    try {
+      loc = coordinates.getJSONObject(files[i]);
+    } catch (Exception e) {
+      println("missing " + files[i]);  
+    }
+  }
+  println("done");
 }
 
