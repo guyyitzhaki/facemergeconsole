@@ -44,7 +44,7 @@ void setup() {
   loadSettings();
   if (!simulate)
     setupSerial();
-  
+
   eyeMask = loadImage("eyesmask.png");
   noseMask = loadImage("nosemask.png");
   mouthMask = loadImage("mouthmask.png");
@@ -111,9 +111,8 @@ void draw() {
     text("frame: " + images[imgIndex[FRAME]], 10, 20); 
     text("eyes: " + images[imgIndex[EYES]], 10, 40); 
     text("nose: " + images[imgIndex[NOSE]], 10, 60); 
-    text("mouth: " + images[imgIndex[MOUTH]], 10, 80); 
+    text("mouth: " + images[imgIndex[MOUTH]], 10, 80);
   }
-  
 }
 
 void drawPart(JSONObject loc, int idx, String key) {
@@ -218,12 +217,11 @@ void loadSettings() {
       outputFolder = val;
       println("setting outputFolder to " + outputFolder);
     }
-    
   }
 }
 
 void printImage() {
- PGraphics   canvas = createGraphics(IMAGE_WIDTH, IMAGE_HEIGHT);
+  PGraphics   canvas = createGraphics(IMAGE_WIDTH, IMAGE_HEIGHT);
 
   canvas.beginDraw();
   canvas.image(parts[FRAME], 0, 0);
@@ -235,7 +233,6 @@ void printImage() {
   PImage img = canvas.get();
   String imageName = "img"+generateTimeStamp()+".png";
   String imagePath = outputFolder + imageName;
-  println(imagePath);
   img.save(imagePath);
   if (printImages) {
     printImage(imagePath, false);
@@ -307,9 +304,9 @@ void keyPressed() {
   case 'd':
     debug = !debug;
     break;
- case 'u':
+  case 'u':
     listNonMapped();
-    break; 
+    break;
   }
 }
 
@@ -347,8 +344,9 @@ void listNonMapped() {
     JSONObject loc;
     try {
       loc = coordinates.getJSONObject(files[i]);
-    } catch (Exception e) {
-      println("missing " + files[i]);  
+    } 
+    catch (Exception e) {
+      println("missing " + files[i]);
     }
   }
   println("done");
