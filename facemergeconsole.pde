@@ -140,7 +140,7 @@ void reset() {
 }
 
 PImage load(int idx) {
-  println("loading " + images[idx]);
+  //println("loading " + images[idx]);
   return loadImage("images/"+images[idx]);
 }
 
@@ -221,16 +221,16 @@ void loadSettings() {
 }
 
 void printImage() {
-  PGraphics   canvas = createGraphics(IMAGE_WIDTH, IMAGE_HEIGHT);
+  PGraphics imageCanvas = createGraphics(IMAGE_WIDTH, IMAGE_HEIGHT);
 
-  canvas.beginDraw();
-  canvas.image(parts[FRAME], 0, 0);
+  imageCanvas.beginDraw();
+  imageCanvas.image(parts[FRAME], 0, 0);
   JSONObject loc = coordinates.getJSONObject(images[imgIndex[FRAME]]); 
-  canvas.image(maskedParts[EYES], loc.getInt("eyesX"), loc.getInt("eyesY"));
-  canvas.image(maskedParts[NOSE], loc.getInt("noseX"), loc.getInt("noseY"));
-  canvas.image(maskedParts[MOUTH], loc.getInt("mouthX"), loc.getInt("mouthY"));
-  canvas.endDraw();
-  PImage img = canvas.get();
+  imageCanvas.image(maskedParts[EYES], loc.getInt("eyesX"), loc.getInt("eyesY"));
+  imageCanvas.image(maskedParts[NOSE], loc.getInt("noseX"), loc.getInt("noseY"));
+  imageCanvas.image(maskedParts[MOUTH], loc.getInt("mouthX"), loc.getInt("mouthY"));
+  imageCanvas.endDraw();
+  PImage img = imageCanvas.get();
   String imageName = "img"+generateTimeStamp()+".png";
   String imagePath = outputFolder + imageName;
   img.save(imagePath);
@@ -248,7 +248,6 @@ void logUsage(String imageName, String frame, String eyes, String nose, String m
   println("saving " + frame + "," + eyes);
   String[] log;
   try {
-    println("trying");
     log = loadStrings("output/log.txt");
   } 
   catch (NullPointerException t) {
