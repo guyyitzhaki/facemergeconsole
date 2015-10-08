@@ -246,14 +246,12 @@ String generateTimeStamp() {
 
 void logUsage(String imageName, String frame, String eyes, String nose, String mouth) {
   String logFile = outputFolder + "log.txt";
-  println("saving " + frame + "," + eyes);
-  String[] log;
+  String[] log = null;
   try {
     log = loadStrings(logFile);
   } 
   catch (NullPointerException t) {
     println("no log found, creating new");
-    log = new String[0];
   }
   if (log == null) {
     log = new String[0];
