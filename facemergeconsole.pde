@@ -245,24 +245,23 @@ String generateTimeStamp() {
 }
 
 void logUsage(String imageName, String frame, String eyes, String nose, String mouth) {
+  String logFile = outputFolder + "log.txt";
   println("saving " + frame + "," + eyes);
   String[] log;
   try {
-    log = loadStrings("output/log.txt");
+    log = loadStrings(logFile);
   } 
   catch (NullPointerException t) {
-    println("exception");
+    println("no log found, creating new");
     log = new String[0];
   }
   if (log == null) {
     log = new String[0];
   }
-  String[] newlog = java.util.Arrays.copyOf(log, log.length+4);
-  newlog[log.length] = imageName + " frame: "+frame;
-  newlog[log.length+1] = imageName + " eyes: "+eyes;
-  newlog[log.length+2] = imageName + " nose: "+nose;
-  newlog[log.length+3] = imageName + " mouth :"+mouth;
-  saveStrings("output/log.txt", newlog);
+  String logEntry = imageName + "[frame: " + frame + ", eyes: " + eyes + ", nose: " + nose + ", mouth: "+mouth+"]";
+  String[] newlog = java.util.Arrays.copyOf(log, log.length+1);  
+  newlog[log.length] = logEntry;
+  saveStrings(logFile, newlog);
 }
 
 void keyPressed() {
