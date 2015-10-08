@@ -3,7 +3,7 @@ import java.io.File;
 import java.io.FilenameFilter;
 
 boolean simulate = true;
-boolean fullScreen = false;
+boolean fullScreen = true;
 boolean printImages = false;
 boolean debug = false;
 
@@ -14,14 +14,12 @@ final int NOSE_HEIGHT = 526;
 final int MOUTH_HEIGHT = 418;
 
 PImage eyeMask, noseMask, mouthMask;
-PGraphics canvas;
-
-
 float drawHeight, drawWidth;
 
 int printerId; 
 String serialDev;
 Serial port;
+String outputFolder;
 int[] selectorValues = new int[4];
 
 final int EYES = 0;
@@ -40,11 +38,13 @@ void setup() {
   size(displayWidth, displayHeight);
   drawHeight = displayHeight;
   drawWidth = IMAGE_WIDTH * drawHeight / IMAGE_HEIGHT;
-  listPrinters();
+  if (printImages) {
+    listPrinters();
+  }
   loadSettings();
   if (!simulate)
     setupSerial();
-  canvas = createGraphics(IMAGE_WIDTH, IMAGE_HEIGHT);
+  
   eyeMask = loadImage("eyesmask.png");
   noseMask = loadImage("nosemask.png");
   mouthMask = loadImage("mouthmask.png");
@@ -214,24 +214,33 @@ void loadSettings() {
       serialDev = val.trim();
       println("setting serial to " + serialDev);
     }
+    if (key.equals("outputFolder")) {
+      outputFolder = val;
+      println("setting outputFolder to " + outputFolder);
+    }
+    
   }
 }
 
 void printImage() {
+ PGraphics   canvas = createGraphics(IMAGE_WIDTH, IMAGE_HEIGHT);
+
   canvas.beginDraw();
   canvas.image(parts[FRAME], 0, 0);
-  JSONObject loc = coordinates.getJSONObject(images[imgIndex[FRAME]]);  
+  JSONObject loc = coordinates.getJSONObject(images[imgIndex[FRAME]]); 
   canvas.image(maskedParts[EYES], loc.getInt("eyesX"), loc.getInt("eyesY"));
   canvas.image(maskedParts[NOSE], loc.getInt("noseX"), loc.getInt("noseY"));
   canvas.image(maskedParts[MOUTH], loc.getInt("mouthX"), loc.getInt("mouthY"));
   canvas.endDraw();
   PImage img = canvas.get();
-  String imagePath = "output/img"+generateTimeStamp()+".png";
+  String imageName = "img"+generateTimeStamp()+".png";
+  String imagePath = outputFolder + imageName;
+  println(imagePath);
   img.save(imagePath);
   if (printImages) {
-    printImage("../"+imagePath, true);
+    printImage(imagePath, false);
   }
-  logUsage(imagePath, images[imgIndex[FRAME]], images[imgIndex[EYES]], images[imgIndex[NOSE]], images[imgIndex[MOUTH]]);
+  logUsage(imageName, images[imgIndex[FRAME]], images[imgIndex[EYES]], images[imgIndex[NOSE]], images[imgIndex[MOUTH]]);
 }
 
 String generateTimeStamp() {

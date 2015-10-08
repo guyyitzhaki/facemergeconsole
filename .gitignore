@@ -1,8 +1,5 @@
 
-application.macosx/facemergeconsole.app/Contents/PlugIns/jdk1.7.0_51.jdk/Contents/Home/jre/lib/security/local_policy.jar
+application.macosx/
 
-application.macosx/facemergeconsole.app/Contents/PlugIns/jdk1.7.0_51.jdk/Contents/Home/jre/lib/zi/EST
-
-output/log.txt
-
+output/
 
