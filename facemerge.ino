@@ -1,4 +1,5 @@
 /*
+    Uses Rotary library from https://github.com/brianlow/Rotary
     Rotary Encoder - Polling Example
 
     The circuit:
