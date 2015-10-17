@@ -1,3 +1,4 @@
 printer: 1
-serial: COM10
+serialprint: /dev/tty
+serialrotary: /dev
 outputFolder: ./output/

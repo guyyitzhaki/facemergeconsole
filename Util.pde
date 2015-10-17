@@ -1,4 +1,4 @@
-public String readStringUntil(int inByte) {
+public String readStringUntil(Serial port, int inByte) {
   byte temp[] = port.readBytesUntil(inByte);
   if (temp == null) {
     return null;
@@ -8,11 +8,11 @@ public String readStringUntil(int inByte) {
   }
 }
 
-String getSerialMessage() {
+String getSerialMessage(Serial port) {
   String last = null;
   if (port.available() > 0) {
     while (port.available () > 0) {
-      String msg = readStringUntil('\n');
+      String msg = readStringUntil(port, '\n');
       if (msg != null) {
         //println("received " +msg);
         last = msg;

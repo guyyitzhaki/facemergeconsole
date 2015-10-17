@@ -17,8 +17,9 @@ PImage eyeMask, noseMask, mouthMask;
 float drawHeight, drawWidth;
 
 int printerId; 
-String serialDev;
-Serial port;
+String serialPrint;
+String serialRotary;
+Serial printPort, rotaryPort;
 String outputFolder;
 int[] selectorValues = new int[4];
 
@@ -73,9 +74,12 @@ void setup() {
 
 void setupSerial() {
   println(Serial.list());
-  println("using "+serialDev);
-  port = new Serial(this, serialDev, 115200);
-  port.clear();
+  println("print: "+serialPrint);
+  printPort = new Serial(this, serialPrint, 115200);
+  printPort.clear();
+  println("rotary: "+serialRotary);
+  rotaryPort = new Serial(this, serialRotary, 115200);
+  rotaryPort.clear();
 }
 
 boolean sketchFullScreen() {
@@ -100,12 +104,19 @@ void draw() {
   drawPart(loc, MOUTH, "mouth");  
 
   if (!simulate) {
-    String msg = getSerialMessage();
+    String msg = getSerialMessage(rotaryPort);
     if (msg!= null && msg.trim().length() > 0) {
       //println(msg);
       msg = msg.trim();
       handleMessage(msg);
     }
+    msg = getSerialMessage(printPort);
+    if (msg!= null && msg.trim().length() > 0) {
+      //println(msg);
+      msg = msg.trim();
+      handleMessage(msg);
+    }
+    
   }
   if (debug) {
     text("frame: " + images[imgIndex[FRAME]], 10, 20); 
@@ -209,9 +220,13 @@ void loadSettings() {
       printerId = Integer.parseInt(val);
       println("setting printer to " + printerId);
     }
-    if (key.equals("serial")) {
-      serialDev = val.trim();
-      println("setting serial to " + serialDev);
+    if (key.equals("serialprint")) {
+      serialPrint = val.trim();
+      println("setting serial print to " + serialPrint);
+    }
+    if (key.equals("serialrotary")) {
+      serialRotary = val.trim();
+      println("setting serial rotary to " + serialRotary);
     }
     if (key.equals("outputFolder")) {
       outputFolder = val;
