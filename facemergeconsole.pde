@@ -333,7 +333,7 @@ void handleMessage(String msg) {
   }
   msg = msg.substring(1, msg.length() - 1);
   if (msg.indexOf("P") != -1) {
-    printFrame(false);
+    printImage();
     msg = msg.substring(1);
   }
   if (msg.length() > 0) {
