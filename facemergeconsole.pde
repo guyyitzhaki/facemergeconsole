@@ -78,8 +78,14 @@ void setupSerial() {
   printPort = new Serial(this, serialPrint, 115200);
   printPort.clear();
   println("rotary: "+serialRotary);
-  rotaryPort = new Serial(this, serialRotary, 115200);
-  rotaryPort.clear();
+  if (serialRotary.equals(serialPrint) {
+    rotaryPort = printPort;
+    println("reusing port");
+  }
+  else {
+    rotaryPort = new Serial(this, serialRotary, 115200);
+    rotaryPort.clear();
+  }
 }
 
 boolean sketchFullScreen() {
