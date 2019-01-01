@@ -12,3 +12,10 @@ key mappings:
 * t,y - advance mouth
 * i,o - advance frame
 * p - print
+
+## installation steps
+* requirements: arduino env, processing 2.2.1
+* connect arduino, set baud rate to 115200 to locate port
+* set simulate to true/false
+* set printImages to true/false
+* update settings.txt with arduino port, printer index
