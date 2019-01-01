@@ -3,6 +3,8 @@ UI console and face merging code for the Perslovak 2.0 exhibition (http://manofi
 
 processing 2.2.1
 
+arduino baud rate: 115200
+
 key mappings:
 * s - save frame
 * q,w - advance eyes
