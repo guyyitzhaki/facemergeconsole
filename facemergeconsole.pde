@@ -4,7 +4,7 @@ import java.io.FilenameFilter;
 
 boolean simulate = true;
 boolean fullScreen = true;
-boolean printImages = false;
+boolean printImages = true;
 boolean debug = false;
 
 final int IMAGE_WIDTH = 1260;
@@ -35,8 +35,16 @@ String[] images;
 float imageX, imageY;
 JSONObject coordinates;
 
+void settings() {
+  if (fullScreen) {
+    fullScreen();
+  }
+}
+
 void setup() {
-  size(displayWidth, displayHeight);
+  if (!fullScreen) {
+    size(displayWidth, displayHeight);
+  }
   drawHeight = displayHeight;
   drawWidth = IMAGE_WIDTH * drawHeight / IMAGE_HEIGHT;
   if (printImages) {
@@ -62,9 +70,7 @@ void setup() {
   reset();
   imageX = width/2 - drawWidth/2;
   imageY = 0;
-  if (fullScreen) {
-    noCursor();
-  }
+
   if (debug) {
     textFont(loadFont("Monospaced.plain-16.vlw"));
   }
@@ -78,7 +84,7 @@ void setupSerial() {
   printPort = new Serial(this, serialPrint, 115200);
   printPort.clear();
   println("rotary: "+serialRotary);
-  if (serialRotary.equals(serialPrint) {
+  if (serialRotary.equals(serialPrint)) {
     rotaryPort = printPort;
     println("reusing port");
   }
@@ -88,9 +94,7 @@ void setupSerial() {
   }
 }
 
-boolean sketchFullScreen() {
-  return fullScreen;
-}
+
 
 void draw() {
   background(0);
@@ -253,9 +257,11 @@ void printImage() {
   imageCanvas.endDraw();
   PImage img = imageCanvas.get();
   String imageName = "img"+generateTimeStamp()+".png";
-  String imagePath = outputFolder + imageName;
+  String imagePath = outputFolder + "/" + imageName;
   img.save(imagePath);
+  println("saved image " + imagePath);
   if (printImages) {
+    println("printing image " + imagePath);
     printImage(imagePath, false);
   }
   logUsage(imageName, images[imgIndex[FRAME]], images[imgIndex[EYES]], images[imgIndex[NOSE]], images[imgIndex[MOUTH]]);
@@ -266,7 +272,7 @@ String generateTimeStamp() {
 }
 
 void logUsage(String imageName, String frame, String eyes, String nose, String mouth) {
-  String logFile = outputFolder + "log.txt";
+  String logFile = outputFolder + "/log.txt";
   String[] log = null;
   try {
     log = loadStrings(logFile);
@@ -289,6 +295,7 @@ void keyPressed() {
     reset();
     break;  
   case 's':
+    println("saving frame");
     saveFrame("image####.png");
     break; 
   case 'q': 
@@ -368,4 +375,3 @@ void listNonMapped() {
   }
   println("done");
 }
-

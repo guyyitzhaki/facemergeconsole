@@ -1,4 +1,4 @@
-printer: 1
+printer: 0
 serialprint: /dev/tty
 serialrotary: /dev
-outputFolder: ./output/
+outputFolder: /Users/guyy/dev/private/sketchbook/facemergeconsole/output
